@@ -9,9 +9,15 @@ import (
 
 func main() {
 	app := iris.New()
+	app.RegisterView(iris.HTML("./public/templates", ".html").Reload(true))
 	app.Get("/", func(ctx iris.Context) {
-		ctx.HTML("<h1> Hello Iris </h1>")
+		ctx.View("index.html")
 	})
+	app.HandleDir("/", "./public/templates")
+	app.HandleDir("/img", "./public/img")
+	app.HandleDir("/css", "./public/css")
+	app.HandleDir("/js", "./public/js")
+
 	app.Post("/", func(ctx iris.Context) {
 		ctx.StatusCode(200)
 		ctx.WriteString("ok")
