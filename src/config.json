@@ -4,5 +4,8 @@
     "DBPassword": "123123",
     "DBIp": "127.0.0.1",
     "DBPort": "3306",
-    "DBName": "test"
+    "DBName": "test",
+    "RedisHost": "127.0.0.1",
+    "RedisPort": "6379",
+    "RedisDB": 3
   }

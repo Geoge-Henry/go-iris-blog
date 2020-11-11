@@ -14,5 +14,6 @@ func InitRouter(app *iris.Application) {
 }
 
 func BlogHandler(app *mvc.Application) {
-	app.Party("/user").Handle(api.MakeUserController())
+	app.Handle(api.MakeAuthController())
+	app.Party("/user", api.AuthHandler).Handle(api.MakeUserController())
 }
