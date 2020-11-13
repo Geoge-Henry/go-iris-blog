@@ -14,7 +14,7 @@ func MakeUserController() *UserController {
 	return &UserController{Service: service.MakeUserService()}
 }
 
-func (self *UserController) AnyWe(ctx iris.Context) string {
+func (self *UserController) PostProfile(ctx iris.Context) string {
 	return "Authentication success"
 }
 
