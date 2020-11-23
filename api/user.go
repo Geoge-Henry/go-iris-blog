@@ -6,7 +6,6 @@ import (
 	"github.com/kataras/iris/v12"
 )
 
-
 type UserController struct {
 	Service service.UserService
 }
@@ -16,7 +15,7 @@ func MakeUserController() *UserController {
 }
 
 func (self *UserController) PostProfile(ctx iris.Context) string {
-	session := SessionObj.Start(ctx)
+	// session := SessionObj.Start(ctx)
 	return "Authentication success"
 }
 
