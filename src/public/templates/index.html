@@ -52,13 +52,21 @@
                 </span>
             </div>
             <div class="nb-a-holder-last">
-                <div class="nb-a-holder-small">
+                <div class="nb-a-holder-small" id="no-login" style="display: none;">
                     <a class="a-login" href="login.html">登录</a>
                 </div>
-                <div class="nb-a-holder-small">
+                <div class="nb-a-holder-small" id="no-login" style="display: none;">
                     <a class="a-login" href="register.html">注册</a>
                 </div>
+                <div class="nb-a-holder-small" id="logined" style="display: none;">
+                    <a class="a-login" href="login.html">个人资料</a>
+                </div>
+                <div class="nb-a-holder-small" id="logined" style="display: none;">
+                    <a class="a-login" href="register.html">退出登录</a>
+                </div>
             </div>
+
+            
         </div>
     </nav>
     <!--mobile导航栏-->
@@ -458,7 +466,7 @@
                             <h1>欢迎光临我的博客</h1>
                         </li>
                         <li class="person-intro-detail">
-                            <h3>网站简介：基于 Go + Vue 的极简主义博客</h3>
+                            <h3>网站简介：基于 Go Iris 的极简主义博客</h3>
                         </li>
                         <li class="person-intro-detail">
                             <h3>所在地：深圳</h3>
@@ -467,7 +475,7 @@
                             <h3>爱好：编程，读书，音乐，篮球</h3>
                         </li>
                         <li class="person-intro-detail">
-                            <h3>网站环境：Docker + Go + Mysql + Vue</h3>
+                            <h3>网站环境：Docker + Go + Mysql</h3>
                         </li>
                     </ul>
                 </div>
@@ -547,9 +555,9 @@
                 </span>
             </div>
         </div>
-        <div class="footer-line">Powerde By <a href="https://github.com/zhaoyangkun/Boundless-UI"
-                target="_blank">BoundlessUI</a> • © 2019</div>
-        <div class="footer-line">浙ICP备88888888号 <a href="" target="_blank">站点地图</a>
+        <div class="footer-line">Author: <a href="https://github.com/Geoge-Henry/go-iris-blog"
+                target="_blank">Henry</a> • © 2019</div>
+        <div class="footer-line">Copy Right: Henry <a href="" target="_blank">站点地图</a>
         </div>
     </footer>
     <script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
@@ -573,6 +581,18 @@
                 console.log("current page: ", page);
             }
         });
+
+        $.post("/henry_blog/user/profile", {}, function(res){
+            console.log(res);
+            resData = JSON.parse(res);
+            if(resData && resData.Code == 0){
+                $(".nb-a-holder-last").children("#no-login").hide();
+                $(".nb-a-holder-last").children("#logined").show();
+            }else{
+                $(".nb-a-holder-last").children("#no-login").show();
+                $(".nb-a-holder-last").children("#logined").hide();
+            }
+        })
 
         // 音乐插件
         const myAudio = new Daudio({

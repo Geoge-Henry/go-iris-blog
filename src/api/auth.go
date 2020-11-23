@@ -1,6 +1,7 @@
 package api
 
 import (
+	"encoding/json"
 	"fmt"
 	"go-web/models"
 	"go-web/service"
@@ -31,7 +32,12 @@ func AuthHandler(ctx iris.Context) {
 			ctx.Redirect("/")
 			return
 		} else {
-			ctx.ResponseWriter().WriteString("auth failed")
+			response, err := json.Marshal(Response{Code: -1, Msg: "auth failed"})
+			fmt.Print(string(response))
+			if err != nil {
+				return
+			}
+			ctx.ResponseWriter().WriteString(string(response))
 			return
 		}
 	}
